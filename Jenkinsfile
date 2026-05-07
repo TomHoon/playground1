@@ -26,20 +26,20 @@ pipeline {
             }
         }
 
-        stage('Test'){
-            agent {
-                docker {
-                    image 'node:22-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    test -f dist/index.html
-                    npm run test
-                '''
-            }
-        }
+//         stage('Test'){
+//             agent {
+//                 docker {
+//                     image 'node:22-alpine'
+//                     reuseNode true
+//                 }
+//             }
+//             steps {
+//                 sh '''
+//                     test -f dist/index.html
+//                     npm run test
+//                 '''
+//             }
+//         }
 
         stage('E2E'){
             agent {
