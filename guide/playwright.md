@@ -1,6 +1,6 @@
 # Playwright Setup (Vite + React)
 
-## 1. Install Playwright
+## 1. 패키지 설치
 
 ```bash
 npm install -D @playwright/test
@@ -8,9 +8,9 @@ npm install -D @playwright/test
 
 ---
 
-## 2. Create `playwright.config.ts`
+## 2. 설정파일 추가 `playwright.config.ts`
 
-Create a new file:
+파일생성(마우스로해도됨):
 
 ```bash
 touch playwright.config.ts
@@ -22,24 +22,24 @@ Add the following configuration:
 import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
-  testDir: './tests',
-
-  use: {
-    baseURL: 'http://localhost:5173',
-    headless: true,
-  },
-
-  webServer: {
-    command: 'npm run dev',
-    port: 5173,
-    reuseExistingServer: true,
-  },
+	testDir: './tests',
+	
+	use: {
+		baseURL: 'http://127.0.0.1:4173',
+		headless: true,
+	},
+	
+	webServer: {
+		command: 'npm run preview',
+		port: 4173,
+		reuseExistingServer: true,
+	},
 })
 ```
 
 ---
 
-## 3. Create Test Directory
+## 3. 폴더 생성
 
 ```bash
 mkdir tests
@@ -47,15 +47,15 @@ mkdir tests
 
 ---
 
-## 4. Create Test Spec File
+## 4. 테스트 스펙 파일 추가
 
-Create a new file:
+파일추가(마우스로해도됨):
 
 ```bash
 touch tests/home.spec.ts
 ```
 
-Add the following test code:
+코드입력:
 
 ```ts
 import { test, expect } from '@playwright/test'
@@ -63,21 +63,21 @@ import { test, expect } from '@playwright/test'
 test('homepage title', async ({ page }) => {
   await page.goto('/')
 
+	// playground는 Index.html의 타이틀명임.
   await expect(page).toHaveTitle(/playground/)
 })
 ```
 
 ---
 
-## 5. Run Playwright Test
+## 5. 테스트 실행
 
 ```bash
 npx playwright test
 ```
 
-Playwright will:
+Playwright 진행순서:
 
-1. Start the Vite development server
-2. Open a browser automatically
-3. Execute the test
-4. Close everything after completion
+1. 빌드 후 preview 생성
+2. 브라우저에서 보는것 처럼 테스트 진행
+3. title에 playground 문자열 있는지 확인
