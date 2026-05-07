@@ -38,6 +38,8 @@ pipeline {
                     test -f dist/index.html
                     npm run test
                 '''
+
+                junit 'reports/junit.xml'
             }
         }
 
@@ -62,12 +64,6 @@ pipeline {
                       --auth=$NETLIFY_AUTH_TOKEN
                 '''
             }
-        }
-    }
-
-    post {
-        always {
-            junit 'reports/junit.xml'
         }
     }
 }
