@@ -36,6 +36,21 @@ pipeline {
             }
         }
 
+        stage('Deploy Staging'){
+            steps {
+                sh '''
+                    npm install -g netlify-cli@20.1.1
+                    netlify --version
+                    echo "프로젝트 아이디 확인: $NETLIFY_ID"
+                    netlify deploy \
+                    --dir=dist \
+                    --site=$NETLIFY_ID \
+                    --auth=$NETLIFY_AUTH_TOKEN
+                '''
+            }
+        }
+    }
+
         stage('Deploy'){
             steps {
                 sh '''
