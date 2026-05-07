@@ -29,6 +29,7 @@ pipeline {
         stage('E2E'){
             steps {
                 sh '''
+                    rm -rf test-results
                     npm ci
                     npx playwright test
                 '''
