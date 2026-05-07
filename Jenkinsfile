@@ -38,8 +38,6 @@ pipeline {
                     test -f dist/index.html
                     npm run test
                 '''
-
-                junit 'reports/junit.xml'
             }
         }
 
@@ -56,14 +54,14 @@ pipeline {
                     npm install -g netlify-cli@20.1.1
                     netlify --version
                     echo "프로젝트 아이디 확인: $NETLIFY_ID"
-
-                    netlify deploy \
-                      --prod \
-                      --dir=dist \
-                      --site=$NETLIFY_ID \
-                      --auth=$NETLIFY_AUTH_TOKEN
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            junit 'reports/junit.xml'
         }
     }
 }
