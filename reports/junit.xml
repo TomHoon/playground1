@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="1" failures="0" errors="0" time="0.018908459">
+    <testsuite name="src/App.test.tsx" timestamp="2026-05-07T04:06:08.318Z" hostname="DONGHOONs-MacBook-Pro.local" tests="1" failures="0" errors="0" skipped="0" time="0.018908459">
+        <testcase classname="src/App.test.tsx" name="renders vite text" time="0.018456625">
+        </testcase>
+    </testsuite>
+</testsuites>
