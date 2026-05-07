@@ -23,8 +23,10 @@ pipeline {
 
         stage('Test'){
             steps {
-                sh 'test -f dist/index.html'
-                sh 'npm test'
+                sh '''
+                    test -f dist/index.html
+                    npm run test
+                '''
             }
         }
     }
