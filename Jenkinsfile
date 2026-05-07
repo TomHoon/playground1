@@ -14,12 +14,6 @@ pipeline {
 
     stages {
         stage('Build') {
-//             agent {
-//                 docker {
-//                     image 'node:22-alpine'
-//                     reuseNode true
-//                 }
-//             }
             steps {
                 sh '''
                     ls -la
@@ -32,28 +26,7 @@ pipeline {
             }
         }
 
-//         stage('Test'){
-//             agent {
-//                 docker {
-//                     image 'node:22-alpine'
-//                     reuseNode true
-//                 }
-//             }
-//             steps {
-//                 sh '''
-//                     test -f dist/index.html
-//                     npm run test
-//                 '''
-//             }
-//         }
-
         stage('E2E'){
-//             agent {
-//                 docker {
-//                     reuseNode true
-//                 }
-//             }
-
             steps {
                 sh '''
                     npm ci
@@ -63,13 +36,6 @@ pipeline {
         }
 
         stage('Deploy'){
-//             agent {
-//                 docker {
-//                     image 'node:22-alpine'
-//                     args '-u root'
-//                     reuseNode true
-//                 }
-//             }
             steps {
                 sh '''
                     npm install -g netlify-cli@20.1.1

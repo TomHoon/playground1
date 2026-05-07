@@ -4,13 +4,13 @@ export default defineConfig({
 	testDir: './tests',
 	
 	use: {
-		baseURL: 'https://gleaming-seahorse-7a496f.netlify.app',
+		baseURL: 'http://127.0.0.1:4173',
 		headless: true,
 	},
 	
-	// webServer: {
-	// 	command: 'npm run dev',
-	// 	port: 5173,
-	// 	reuseExistingServer: true,
-	// },
+	webServer: {
+		command: 'npm run preview',
+		port: 4173,
+		reuseExistingServer: true,
+	},
 })
