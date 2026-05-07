@@ -54,7 +54,12 @@ pipeline {
                     npm install -g netlify-cli@20.1.1
                     netlify --version
                     echo "프로젝트 아이디 확인: $NETLIFY_ID"
-                    echo "Netlify 토큰 확인: $NETLIFY_TOKEN"
+
+                    netlify deploy \
+                      --prod \
+                      --dir=dist \
+                      --site=$NETLIFY_ID \
+                      --auth=$NETLIFY_TOKEN
                 '''
             }
         }
