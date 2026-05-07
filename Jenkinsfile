@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:v1.55.0-noble'
+            reuseNode true
+        }
+    }
 
     environment{
         NETLIFY_ID = '15188cfd-02b2-4c7e-a68e-b60652a624e3'
@@ -8,12 +13,12 @@ pipeline {
 
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'node:22-alpine'
-                    reuseNode true
-                }
-            }
+//             agent {
+//                 docker {
+//                     image 'node:22-alpine'
+//                     reuseNode true
+//                 }
+//             }
             steps {
                 sh '''
                     ls -la
@@ -42,32 +47,28 @@ pipeline {
 //         }
 
         stage('E2E'){
-            agent {
-                docker {
-                    image 'mcr.microsoft.com/playwright:v1.55.0-noble'
-                    reuseNode true
-                }
-            }
+//             agent {
+//                 docker {
+//                     reuseNode true
+//                 }
+//             }
 
             steps {
                 sh '''
                     npm ci
-
-                    npx playwright install --with-deps
-
                     npx playwright test
                 '''
             }
         }
 
         stage('Deploy'){
-            agent {
-                docker {
-                    image 'node:22-alpine'
-                    args '-u root'
-                    reuseNode true
-                }
-            }
+//             agent {
+//                 docker {
+//                     image 'node:22-alpine'
+//                     args '-u root'
+//                     reuseNode true
+//                 }
+//             }
             steps {
                 sh '''
                     npm install -g netlify-cli@20.1.1
