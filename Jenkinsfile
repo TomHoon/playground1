@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment{
+        NETLIFY_ID = '15188cfd-02b2-4c7e-a68e-b60652a624e3'
+    }
+
     stages {
         stage('Build') {
             agent {
@@ -48,6 +52,7 @@ pipeline {
                 sh '''
                     npm install -g netlify-cli@20.1.1
                     netlify --version
+                    echo "프로젝트 아이디 확인: $NETLIFY_ID"
                 '''
             }
         }
