@@ -3,7 +3,7 @@ pipeline {
 
     environment{
         NETLIFY_ID = '15188cfd-02b2-4c7e-a68e-b60652a624e3'
-        NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+        NETLIFY_AUTH_TOKEN = credentials('netlify-token-global')
     }
 
     stages {
@@ -54,14 +54,19 @@ pipeline {
                     npm install -g netlify-cli@20.1.1
                     netlify --version
                     echo "프로젝트 아이디 확인: $NETLIFY_ID"
+                    netlify deploy \
+                    --prod \
+                    --dir=dist \
+                    --site=$NETLIFY_ID \
+                    --auth=$NETLIFY_AUTH_TOKEN
                 '''
             }
         }
     }
 
-//     post {
-//         always {
-//             junit 'reports/junit.xml'
-//         }
-//     }
+    post {
+        always {
+            junit 'reports/junit.xml'
+        }
+    }
 }
